@@ -49,5 +49,6 @@ class ButtonTest {
             .let (bt9::operation)
             .let (bt9::operation)
         Assert.assertEquals("0"+separatorButton.caption+"699",dataStateAfter.current)
+        Assert.assertEquals(0.699,dataStateAfter.getDoubleCurrent(),1e-7)
     }
 }

@@ -1,5 +1,8 @@
 package com.pvv.calculator.logic
 
+import java.text.DecimalFormatSymbols
+
+val decimalSeparator = DecimalFormatSymbols().decimalSeparator
 class CalcOperation (
    val caption : String,
    val oper : (Double, Double) -> Double,
@@ -13,5 +16,5 @@ data class DataState (
     var isEmptyCurrent :Boolean = false
 ){
     fun getStringCurrent():String = if (isEmptyCurrent) "0" else current
-    fun getDoubleCurrent():Double = getStringCurrent().toDoubleOrNull() ?: 0.0
+    fun getDoubleCurrent():Double = getStringCurrent().replace(decimalSeparator,'.').toDoubleOrNull() ?: 0.0
 }

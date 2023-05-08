@@ -1,30 +1,22 @@
 package com.pvv.calculator
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.pvv.calculator.logic.CalcButton
 
 
 @Composable
 fun MainButton(calcButton: CalcButton,
-           onClick: (CalcButton)-> Unit,
-           modifier: Modifier
+               onClick : (CalcButton) -> Unit,
+               modifier:Modifier = Modifier
 ){
     TextButton(
         onClick = {onClick(calcButton)},
-        modifier = modifier,
         shape = Shapes.Full) {
-        Text(text = calcButton.text,
+        Text(text = calcButton.caption,
             style = MaterialTheme.typography.bodyLarge)
     }
 }
 
-@Preview
-@Composable
-fun testButton(){
-    MainButton(calcButton = CalcButton.DG_1,
-    onClick = {},
-    modifier = Modifier)
-}
+

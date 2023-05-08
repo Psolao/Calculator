@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.graphics.ColorUtils
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pvv.calculator.ui.theme.CalculatorTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,61 +26,58 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Column(modifier = Modifier.fillMaxSize()) {
-                        Spacer(modifier = Modifier.weight(1f))
-                        Indicator("TEST", Modifier)
-                        Row2({}, Modifier)
-                        Row1({}, Modifier)
-                    }
+                     MainScreen()
+                   }
                 }
             }
         }
     }
 
-}
+    @Composable
+    fun MainScreen(
+        modifier: Modifier = Modifier,
+        gameViewModel: CalcViewModel = viewModel()
+    ){
+        Column(modifier = Modifier.fillMaxSize()) {
+            Spacer(modifier = Modifier.weight(1f))
+//                        Indicator("TEST", Modifier)
+//                        Row2({}, Modifier)
+//                        Row1({}, Modifier)
+        }
+
+    }
 
 @Composable
-fun Row1(onClick:(calcButton:CalcButton)->Unit,
-         modifier: Modifier ){
+fun Row1(viewModel: CalcViewModel =viewModel(),
+         modifier: Modifier = Modifier){
     Row(Modifier.fillMaxWidth()) {
-        MainButton(CalcButton.DG_1, onClick, modifier.weight(1f))
-        MainButton(CalcButton.DG_2, onClick, modifier.weight(1f))
-        MainButton(CalcButton.DG_3, onClick, modifier.weight(1f))
-        MainButton(CalcButton.PLUS, onClick, modifier.weight(1f))
+        MainButton(viewModel.repository.digitButtons[1], viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.digitButtons[2], viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.digitButtons[3], viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.plusButton, viewModel::onButtonPress, modifier.weight(1f))
     }
 }
 
 @Composable
-fun Row2(onClick:(calcButton:CalcButton)->Unit,
-         modifier: Modifier ){
+fun Row2(viewModel: CalcViewModel =viewModel(),
+         modifier: Modifier = Modifier){
     Row(Modifier.fillMaxWidth()) {
-        MainButton(CalcButton.DG_4, onClick, modifier.weight(1f))
-        MainButton(CalcButton.DG_5, onClick, modifier.weight(1f))
-        MainButton(CalcButton.DG_6, onClick, modifier.weight(1f))
-        MainButton(CalcButton.MINUS, onClick, modifier.weight(1f))
-    }
+        MainButton(viewModel.repository.digitButtons[4], viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.digitButtons[5], viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.digitButtons[6], viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.minusButton, viewModel::onButtonPress, modifier.weight(1f))    }
 }
 
 @Composable
 fun Indicator(text:String, modifier: Modifier){
     Row(modifier = Modifier.fillMaxWidth()) {
         Text(text = text,
-             textAlign = TextAlign.Right,
-              modifier = modifier.fillMaxWidth()
+            textAlign = TextAlign.Right,
+            modifier = modifier.fillMaxWidth()
         )
     }
 }
 
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    CalculatorTheme {
-        Greeting("Android")
-    }
-}
+

@@ -1,8 +1,9 @@
 package com.pvv.calculator.logic
 
 class CalcOperation (
+   val caption : String,
    val oper : (Double, Double) -> Double,
-   val caption : String)
+   )
 
 data class DataState (
     val current : String = "0",

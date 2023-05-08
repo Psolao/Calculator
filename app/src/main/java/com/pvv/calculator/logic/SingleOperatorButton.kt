@@ -5,7 +5,7 @@ class SingleOperatorButton (override val caption : String,
     override fun operation(state: DataState): DataState {
         try {
            return state.copy(
-              current = operation(state.current.toDoubleOrNull()?:0.0).toString(),
+              current = operation(state.getDoubleCurrent()).toString(),
               isEmptyCurrent = false)
            }
         catch (E:RuntimeException){

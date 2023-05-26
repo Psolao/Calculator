@@ -9,11 +9,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.pvv.calculator.logic.DataState
+import com.pvv.calculator.ui.Indicator
 import com.pvv.calculator.ui.theme.CalculatorTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,16 +39,34 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun MainScreen(
         modifier: Modifier = Modifier,
-        gameViewModel: CalcViewModel = viewModel()
+        calcViewModel: CalcViewModel = viewModel()
     ){
+        val dataState = calcViewModel
+            .uiState
+            .collectAsState(
+                initial = DataState()
+            )
         Column(modifier = Modifier.fillMaxSize()) {
             Spacer(modifier = Modifier.weight(1f))
-//                        Indicator("TEST", Modifier)
-//                        Row2({}, Modifier)
-//                        Row1({}, Modifier)
+                        Indicator(dataState.value, Modifier)
+                        Row3(calcViewModel, Modifier)
+                        Row2(calcViewModel, Modifier)
+                        Row1(calcViewModel, Modifier)
+                        Row0(calcViewModel, Modifier)
         }
 
     }
+
+@Composable
+fun Row0(viewModel: CalcViewModel =viewModel(),
+         modifier: Modifier = Modifier){
+    Row(Modifier.fillMaxWidth()) {
+        MainButton(viewModel.repository.invertButton, viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.digitButtons[0], viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.separatorButton, viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.executeButton, viewModel::onButtonPress, modifier.weight(1f))
+    }
+}
 
 @Composable
 fun Row1(viewModel: CalcViewModel =viewModel(),
@@ -69,13 +90,13 @@ fun Row2(viewModel: CalcViewModel =viewModel(),
 }
 
 @Composable
-fun Indicator(text:String, modifier: Modifier){
-    Row(modifier = Modifier.fillMaxWidth()) {
-        Text(text = text,
-            textAlign = TextAlign.Right,
-            modifier = modifier.fillMaxWidth()
-        )
-    }
+fun Row3(viewModel: CalcViewModel =viewModel(),
+         modifier: Modifier = Modifier){
+    Row(Modifier.fillMaxWidth()) {
+        MainButton(viewModel.repository.digitButtons[7], viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.digitButtons[8], viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.digitButtons[9], viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.multButton, viewModel::onButtonPress, modifier.weight(1f))    }
 }
 
 

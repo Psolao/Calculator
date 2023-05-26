@@ -8,7 +8,7 @@ class ExecuteButton:CalcButton {
         if (state.operation==null) return state
         return try {
             val result = state.operation.oper(state.previous ?: 0.0, state.getDoubleCurrent())
-            state.copy(current = result.toString(),
+            state.copy(current = doubleOrIntToStr(result)!!,
                          previous = result,
                          operation = null,
                          isEmptyCurrent = true )

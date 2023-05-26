@@ -30,3 +30,11 @@ val Typography = Typography(
         letterSpacing = 1.sp
     )
 )
+
+val indicatorStyle = TextStyle(
+    fontFamily = FontFamily.Default,
+    fontWeight = FontWeight.Bold,
+    fontSize =  96.sp,
+    lineHeight = 66.sp,
+    letterSpacing = 0.sp
+)

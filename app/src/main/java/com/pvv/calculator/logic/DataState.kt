@@ -1,6 +1,7 @@
 package com.pvv.calculator.logic
 
 import java.text.DecimalFormatSymbols
+import kotlin.math.abs
 
 val decimalSeparator = DecimalFormatSymbols().decimalSeparator
 class CalcOperation (
@@ -17,4 +18,15 @@ data class DataState (
 ){
     fun getStringCurrent():String = if (isEmptyCurrent) "0" else current
     fun getDoubleCurrent():Double = getStringCurrent().replace(decimalSeparator,'.').toDoubleOrNull() ?: 0.0
+}
+
+fun doubleOrIntToStr(arg:Double?):String?{
+    if (arg==null) return null
+    val frac = arg % 1
+    return if (abs(frac) <1e-8) {
+        arg.toLong().toString()
+    }
+    else{
+        arg.toString()
+    }
 }

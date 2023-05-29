@@ -13,7 +13,8 @@ fun MainButton(calcButton: CalcButton,
 ){
     TextButton(
         onClick = {onClick(calcButton)},
-        shape = Shapes.Full) {
+        shape = Shapes.Full,
+        modifier = modifier) {
         Text(text = calcButton.caption,
             style = MaterialTheme.typography.bodyLarge)
     }

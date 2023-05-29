@@ -1,19 +1,15 @@
 package com.pvv.calculator
 
 import android.os.Bundle
-import android.widget.EditText
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pvv.calculator.logic.DataState
 import com.pvv.calculator.ui.Indicator
@@ -48,40 +44,45 @@ class MainActivity : ComponentActivity() {
             )
         Column(modifier = Modifier.fillMaxSize()) {
             Spacer(modifier = Modifier.weight(1f))
-                        Indicator(dataState.value, Modifier)
-                        Row3(calcViewModel, Modifier)
-                        Row2(calcViewModel, Modifier)
-                        Row1(calcViewModel, Modifier)
-                        Row0(calcViewModel, Modifier)
+                        Indicator(Modifier, dataState.value)
+                        Row3(Modifier, calcViewModel)
+                        Row2(Modifier, calcViewModel)
+                        Row1(Modifier, calcViewModel)
+                        Row0(Modifier, calcViewModel)
         }
 
     }
 
 @Composable
-fun Row0(viewModel: CalcViewModel =viewModel(),
-         modifier: Modifier = Modifier){
+fun Row0(modifier: Modifier = Modifier,
+         viewModel: CalcViewModel =viewModel(),
+         ){
     Row(Modifier.fillMaxWidth()) {
-        MainButton(viewModel.repository.invertButton, viewModel::onButtonPress, modifier.weight(1f))
-        MainButton(viewModel.repository.digitButtons[0], viewModel::onButtonPress, modifier.weight(1f))
-        MainButton(viewModel.repository.separatorButton, viewModel::onButtonPress, modifier.weight(1f))
-        MainButton(viewModel.repository.executeButton, viewModel::onButtonPress, modifier.weight(1f))
+        val buttonModifier = modifier.weight(weight = 1f, fill = true)
+        MainButton(viewModel.repository.invertButton, viewModel::onButtonPress, buttonModifier)
+        MainButton(viewModel.repository.digitButtons[0], viewModel::onButtonPress, buttonModifier)
+        MainButton(viewModel.repository.separatorButton, viewModel::onButtonPress, buttonModifier)
+        MainButton(viewModel.repository.executeButton, viewModel::onButtonPress, buttonModifier)
     }
 }
 
 @Composable
-fun Row1(viewModel: CalcViewModel =viewModel(),
-         modifier: Modifier = Modifier){
+fun Row1(modifier: Modifier = Modifier,
+         viewModel: CalcViewModel =viewModel(),
+         ){
     Row(Modifier.fillMaxWidth()) {
-        MainButton(viewModel.repository.digitButtons[1], viewModel::onButtonPress, modifier.weight(1f))
-        MainButton(viewModel.repository.digitButtons[2], viewModel::onButtonPress, modifier.weight(1f))
-        MainButton(viewModel.repository.digitButtons[3], viewModel::onButtonPress, modifier.weight(1f))
-        MainButton(viewModel.repository.plusButton, viewModel::onButtonPress, modifier.weight(1f))
+        val buttonModifier = modifier.weight(weight = 1f, fill = true)
+        MainButton(viewModel.repository.digitButtons[1], viewModel::onButtonPress, buttonModifier)
+        MainButton(viewModel.repository.digitButtons[2], viewModel::onButtonPress, buttonModifier)
+        MainButton(viewModel.repository.digitButtons[3], viewModel::onButtonPress, buttonModifier)
+        MainButton(viewModel.repository.plusButton, viewModel::onButtonPress, buttonModifier)
     }
 }
 
 @Composable
-fun Row2(viewModel: CalcViewModel =viewModel(),
-         modifier: Modifier = Modifier){
+fun Row2(modifier: Modifier = Modifier,
+         viewModel: CalcViewModel =viewModel(),
+         ){
     Row(Modifier.fillMaxWidth()) {
         MainButton(viewModel.repository.digitButtons[4], viewModel::onButtonPress, modifier.weight(1f))
         MainButton(viewModel.repository.digitButtons[5], viewModel::onButtonPress, modifier.weight(1f))
@@ -90,8 +91,9 @@ fun Row2(viewModel: CalcViewModel =viewModel(),
 }
 
 @Composable
-fun Row3(viewModel: CalcViewModel =viewModel(),
-         modifier: Modifier = Modifier){
+fun Row3(modifier: Modifier = Modifier,
+         viewModel: CalcViewModel =viewModel(),
+         ){
     Row(Modifier.fillMaxWidth()) {
         MainButton(viewModel.repository.digitButtons[7], viewModel::onButtonPress, modifier.weight(1f))
         MainButton(viewModel.repository.digitButtons[8], viewModel::onButtonPress, modifier.weight(1f))
@@ -99,6 +101,11 @@ fun Row3(viewModel: CalcViewModel =viewModel(),
         MainButton(viewModel.repository.multButton, viewModel::onButtonPress, modifier.weight(1f))    }
 }
 
+@Preview
+@Composable
+fun TestRow1(){
+    Row1()
+}
 
 
 

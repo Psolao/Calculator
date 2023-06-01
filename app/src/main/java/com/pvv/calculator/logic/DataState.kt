@@ -17,7 +17,7 @@ data class DataState (
     var isEmptyCurrent :Boolean = false
 ){
     fun getStringCurrent():String = if (isEmptyCurrent) "0" else current
-    fun getDoubleCurrent():Double = getStringCurrent().replace(decimalSeparator,'.').toDoubleOrNull() ?: 0.0
+    fun getDoubleCurrent():Double = current.replace(decimalSeparator,'.').toDoubleOrNull() ?: 0.0
 }
 
 fun doubleOrIntToStr(arg:Double?):String?{

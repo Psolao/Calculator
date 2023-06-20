@@ -11,22 +11,22 @@ val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 48.sp,
-        lineHeight = 56.sp,
+        fontSize = 32.sp,
+        lineHeight = 40.sp,
         letterSpacing = 1.sp
     ),
     titleLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 56.sp,
-        lineHeight = 66.sp,
+        fontSize = 48.sp,
+        lineHeight = 54.sp,
         letterSpacing = 0.sp
     ),
     labelSmall = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Medium,
-        fontSize = 48.sp,
-        lineHeight = 56.sp,
+        fontSize = 32.sp,
+        lineHeight = 40.sp,
         letterSpacing = 1.sp
     )
 )
@@ -34,7 +34,7 @@ val Typography = Typography(
 val indicatorStyle = TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Bold,
-    fontSize =  96.sp,
-    lineHeight = 66.sp,
+    fontSize =  32.sp,
+    lineHeight = 40.sp,
     letterSpacing = 0.sp
 )

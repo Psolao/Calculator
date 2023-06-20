@@ -13,7 +13,7 @@ data class DataState (
     val current : String = "0",
     val previous : Double? = null,
     val operation : CalcOperation? = null,
-    val Memory : Double? = null,
+    val memory : Double? = null,
     var isEmptyCurrent :Boolean = false
 ){
     fun getStringCurrent():String = if (isEmptyCurrent) "0" else current

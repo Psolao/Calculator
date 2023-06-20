@@ -6,7 +6,7 @@ class SingleOperatorButton (override val caption : String,
         try {
            return state.copy(
               current = operation(state.getDoubleCurrent()).toString(),
-              isEmptyCurrent = false)
+              isEmptyCurrent = true)
            }
         catch (E:RuntimeException){
             return state.copy(current = "ERROR",

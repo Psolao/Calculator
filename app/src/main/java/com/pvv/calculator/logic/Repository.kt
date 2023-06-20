@@ -33,10 +33,32 @@ class Repository {
     )
 
     val divButton = DualOperatorButton(
-        CalcOperation("*"){
-                arg1, arg2 -> arg1 * arg2
+        CalcOperation("/"){
+                arg1, arg2 -> arg1 / arg2
         }
     )
 
+    val multInvButton =
+        SingleOperatorButton ("1/x"){
+        1/it
+    }
 
+    val sqrButton =
+        SingleOperatorButton ("x\u00b2"){
+            it*it
+        }
+
+    val sqrtButton =
+        SingleOperatorButton ("\u221Ax"){
+            Math.sqrt(it)
+        }
+
+    val percButton =
+        SingleOperatorButton ("%"){
+            it/100.0
+        }
+
+    val resetButton = ResetButton()
+    val resetAllButton = ResetAllButton()
+    val backspaceButton = BackspaceButton()
 }

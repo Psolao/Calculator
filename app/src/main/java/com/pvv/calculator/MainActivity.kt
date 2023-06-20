@@ -45,6 +45,8 @@ class MainActivity : ComponentActivity() {
         Column(modifier = Modifier.fillMaxSize()) {
             Spacer(modifier = Modifier.weight(1f))
                         Indicator(Modifier, dataState.value)
+                        Row5(Modifier, calcViewModel)
+                        Row4(Modifier, calcViewModel)
                         Row3(Modifier, calcViewModel)
                         Row2(Modifier, calcViewModel)
                         Row1(Modifier, calcViewModel)
@@ -100,6 +102,29 @@ fun Row3(modifier: Modifier = Modifier,
         MainButton(viewModel.repository.digitButtons[9], viewModel::onButtonPress, modifier.weight(1f))
         MainButton(viewModel.repository.multButton, viewModel::onButtonPress, modifier.weight(1f))    }
 }
+
+@Composable
+fun Row4(modifier: Modifier = Modifier,
+         viewModel: CalcViewModel =viewModel(),
+){
+    Row(Modifier.fillMaxWidth()) {
+        MainButton(viewModel.repository.multInvButton, viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.sqrButton, viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.sqrtButton, viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.divButton, viewModel::onButtonPress, modifier.weight(1f))    }
+}
+
+@Composable
+fun Row5(modifier: Modifier = Modifier,
+         viewModel: CalcViewModel =viewModel(),
+){
+    Row(Modifier.fillMaxWidth()) {
+        MainButton(viewModel.repository.percButton, viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.resetButton, viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.resetAllButton, viewModel::onButtonPress, modifier.weight(1f))
+        MainButton(viewModel.repository.backspaceButton, viewModel::onButtonPress, modifier.weight(1f))    }
+}
+
 
 @Preview
 @Composable

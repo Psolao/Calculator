@@ -45,6 +45,7 @@ class MainActivity : ComponentActivity() {
         Column(modifier = Modifier.fillMaxSize()) {
             Spacer(modifier = Modifier.weight(1f))
                         Indicator(Modifier, dataState.value)
+                        RowMemory(Modifier, calcViewModel, dataState.value.memory != null)
                         Row5(Modifier, calcViewModel)
                         Row4(Modifier, calcViewModel)
                         Row3(Modifier, calcViewModel)
@@ -125,11 +126,26 @@ fun Row5(modifier: Modifier = Modifier,
         MainButton(viewModel.repository.backspaceButton, viewModel::onButtonPress, modifier.weight(1f))    }
 }
 
+@Composable
+fun RowMemory(modifier: Modifier = Modifier,
+         viewModel: CalcViewModel =viewModel(),
+         hasMemory : Boolean = true
+){
+
+    Row(Modifier.fillMaxWidth()) {
+        MainButton(viewModel.repository.memoryResetButton, viewModel::onButtonPress, modifier, enabled = hasMemory )
+        MainButton(viewModel.repository.memoryGetButton, viewModel::onButtonPress, modifier, enabled = hasMemory)
+        MainButton(viewModel.repository.memoryMinusButton, viewModel::onButtonPress, modifier)
+        MainButton(viewModel.repository.memoryPlusButton, viewModel::onButtonPress, modifier)
+        MainButton(viewModel.repository.memorySetButton, viewModel::onButtonPress, modifier)
+    }
+}
+
 
 @Preview
 @Composable
-fun TestRow1(){
-    Row1()
+fun TestMainScreen(){
+    MainScreen()
 }
 
 

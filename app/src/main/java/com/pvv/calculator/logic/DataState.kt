@@ -18,6 +18,7 @@ data class DataState (
 ){
     fun getStringCurrent():String = if (isEmptyCurrent) "0" else current
     fun getDoubleCurrent():Double = current.replace(decimalSeparator,'.').toDoubleOrNull() ?: 0.0
+
 }
 
 fun doubleOrIntToStr(arg:Double?):String?{
@@ -27,6 +28,6 @@ fun doubleOrIntToStr(arg:Double?):String?{
         arg.toLong().toString()
     }
     else{
-        arg.toString()
+        arg.toString().replace('.', decimalSeparator)
     }
 }

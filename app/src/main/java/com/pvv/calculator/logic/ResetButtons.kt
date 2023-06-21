@@ -15,6 +15,6 @@ class ResetAllButton: CalcButton {
         get() = "C"
 
     override fun operation(state: DataState): DataState {
-        return DataState(memory = state.memory)
+        return DataState(memory = state.memory, isEmptyCurrent = true)
     }
 }

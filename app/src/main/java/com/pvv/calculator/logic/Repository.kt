@@ -61,4 +61,9 @@ class Repository {
     val resetButton = ResetButton()
     val resetAllButton = ResetAllButton()
     val backspaceButton = BackspaceButton()
+    val memorySetButton = MemorySetButton()
+    val memoryPlusButton = MemoryPlusButton()
+    val memoryMinusButton = MemoryMinusButton()
+    val memoryGetButton = MemoryGetButton()
+    val memoryResetButton = MemoryResetButton()
 }

@@ -1,8 +1,8 @@
 package com.pvv.calculator
 
-import androidx.compose.ui.res.stringArrayResource
 import com.pvv.calculator.logic.CalcOperation
 import com.pvv.calculator.logic.DataState
+import com.pvv.calculator.logic.decimalSeparator
 import com.pvv.calculator.ui.prevInfo
 import org.junit.Assert
 import org.junit.Test
@@ -35,7 +35,7 @@ class UtilTest {
             }
         )
         val inf = prevInfo(state)
-        Assert.assertEquals("4.8*", inf)
+        Assert.assertEquals("4${decimalSeparator}8*", inf)
     }
 
     @Test
@@ -44,7 +44,7 @@ class UtilTest {
             operation = null
         )
         val inf = prevInfo(state)
-        Assert.assertEquals("4.8", inf)
+        Assert.assertEquals("4${decimalSeparator}8", inf)
     }
 
 }

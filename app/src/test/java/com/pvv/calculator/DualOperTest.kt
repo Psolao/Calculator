@@ -47,7 +47,21 @@ class DualOperTest {
 
         Assert.assertEquals(15.9, dataStateAfter.previous ?: 0.0, delta)
         Assert.assertTrue(dataStateAfter.isEmptyCurrent)
-        Assert.assertEquals("15.9", dataStateAfter.current)
+        Assert.assertEquals("15${decimalSeparator}9", dataStateAfter.current)
+    }
+
+
+    @Test
+    fun testDiv(){
+        val dataState = DataState()
+        val dataStateAfter =
+            dataState
+                .let(repo.digitButtons[6]::operation)
+                .let(repo.divButton::operation)
+                .let(repo.digitButtons[4]::operation)
+                .let(repo.executeButton::operation)
+
+        Assert.assertEquals(1.5, dataStateAfter.getDoubleCurrent(), delta)
     }
 
 

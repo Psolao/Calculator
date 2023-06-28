@@ -37,15 +37,10 @@ class MainActivity : ComponentActivity() {
         modifier: Modifier = Modifier,
         calcViewModel: CalcViewModel = viewModel()
     ){
-        val dataState = calcViewModel
-            .uiState
-            .collectAsState(
-                initial = DataState()
-            )
         Column(modifier = Modifier.fillMaxSize()) {
             Spacer(modifier = Modifier.weight(1f))
-                        Indicator(Modifier, dataState.value)
-                        RowMemory(Modifier, calcViewModel, dataState.value.memory != null)
+                        Indicator(Modifier, calcViewModel)
+                        RowMemory(Modifier, calcViewModel)
                         Row5(Modifier, calcViewModel)
                         Row4(Modifier, calcViewModel)
                         Row3(Modifier, calcViewModel)
@@ -128,13 +123,16 @@ fun Row5(modifier: Modifier = Modifier,
 
 @Composable
 fun RowMemory(modifier: Modifier = Modifier,
-         viewModel: CalcViewModel =viewModel(),
-         hasMemory : Boolean = true
+         viewModel: CalcViewModel =viewModel()
 ){
-
+    val dataState = viewModel
+        .uiState
+        .collectAsState(
+            initial = DataState()
+        )
     Row(Modifier.fillMaxWidth()) {
-        MainButton(viewModel.repository.memoryResetButton, viewModel::onButtonPress, modifier, enabled = hasMemory )
-        MainButton(viewModel.repository.memoryGetButton, viewModel::onButtonPress, modifier, enabled = hasMemory)
+        MainButton(viewModel.repository.memoryResetButton, viewModel::onButtonPress, modifier, enabled = dataState.value.memory != null )
+        MainButton(viewModel.repository.memoryGetButton, viewModel::onButtonPress, modifier, enabled = dataState.value.memory != null)
         MainButton(viewModel.repository.memoryMinusButton, viewModel::onButtonPress, modifier)
         MainButton(viewModel.repository.memoryPlusButton, viewModel::onButtonPress, modifier)
         MainButton(viewModel.repository.memorySetButton, viewModel::onButtonPress, modifier)
